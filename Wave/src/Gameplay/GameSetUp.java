@@ -25,7 +25,7 @@ public class GameSetUp extends BasicGame{
 
     @Override
     public void init(GameContainer gc) throws SlickException {
-        music = new Music("Music/song.ogg");
+        music = new Music("Music/tempIntroSong.ogg");
         music.setVolume(1.0f);
         music.loop();
         //sound = new Sound();
