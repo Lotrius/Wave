@@ -10,5 +10,5 @@ package Multiplayer;
  * @author Solomon
  */
 public class ConnectToServer {
-    
+
 }
