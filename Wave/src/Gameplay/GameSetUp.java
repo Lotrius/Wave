@@ -8,6 +8,7 @@ package Gameplay;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -33,6 +34,9 @@ public class GameSetUp extends BasicGame{
 
     @Override
     public void update(GameContainer gc, int i) throws SlickException {
+        if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+            gc.exit();
+        }
     }
 
     @Override
