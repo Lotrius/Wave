@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Gameplay;
 
 import org.newdawn.slick.GameContainer;
@@ -12,13 +17,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  *
- * @author Chris (and Solomon?)
+ * @author solomon
  */
-public class GameSetUp extends BasicGameState{
-
-    GameSetUp(String wave) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class OpeningScreen extends BasicGameState{
+    private Music music;
+    private Sound sound;
 
     @Override
     public int getID() {
@@ -27,7 +30,10 @@ public class GameSetUp extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        music = new Music("Music/tempIntroSong.ogg");
+        music.setVolume(1.0f);
+        music.loop();
+        //sound = new Sound();
     }
 
     @Override
@@ -37,8 +43,8 @@ public class GameSetUp extends BasicGameState{
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+            gc.exit();
+        }
     }
-    
-    
 }

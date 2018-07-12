@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
- <tileset firstgid="1" source="LandScapes.tsx"/>
- <tileset firstgid="901" source="Landscapes 2.tsx"/>
- <tileset firstgid="1801" source="Teleport.tsx"/>
- <tileset firstgid="1841" source="Landscapes 3.tsx"/>
- <tileset firstgid="2741" source="Landscape 5.tsx"/>
+ <tileset firstgid="1" source="art-1.tsx"/>
+ <tileset firstgid="901" source="art-2.tsx"/>
+ <tileset firstgid="1801" source="teleport.tsx"/>
+ <tileset firstgid="1841" source="art-3.tsx"/>
+ <tileset firstgid="2741" source="art-5.tsx"/>
  <layer name="Bottom layer" width="50" height="50">
   <data encoding="csv">
 854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,854,
