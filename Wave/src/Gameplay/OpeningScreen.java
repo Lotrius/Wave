@@ -40,7 +40,6 @@ public class OpeningScreen extends BasicGameState {
         music = new Music("Music/tempIntroSong.ogg");
         music.setVolume(1.0f);
         music.loop();
-        //sound = new Sound();
     }
 
     @Override
