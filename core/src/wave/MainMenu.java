@@ -4,14 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
+
 import maps.MainCity;
 
 public class MainMenu implements Screen {
 	private Wave game;
 	private Music music;
+	private Texture texture;
 
 	public MainMenu(Wave game) {
 		this.game = game;
+		texture = new Texture("art/wave2.jpg");
 		music = Gdx.audio.newMusic(Gdx.files.internal("Music/tempIntroSong.ogg"));
 		music.setVolume(0.1f);
 		music.play();
@@ -32,7 +36,9 @@ public class MainMenu implements Screen {
 			this.dispose();
 			game.setScreen(new MainCity(game));
 		}
-
+		game.batch.begin();
+		game.batch.draw(texture, 0, 0);
+		game.batch.end();
 	}
 
 	@Override
