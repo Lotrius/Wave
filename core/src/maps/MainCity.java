@@ -27,7 +27,7 @@ public class MainCity implements Screen{
 		cam = new OrthographicCamera();
 		tiledMap = new TmxMapLoader().load("map/PortalArea1/portal_area_1.tmx");
 		renderer = new OrthogonalTiledMapRenderer(tiledMap, 0.8f);
-		viewport = new FitViewport(800, 480, cam);
+		viewport = new FitViewport(Wave.V_WIDTH, Wave.V_HEIGHT, cam);
 		cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		music = Gdx.audio.newMusic(Gdx.files.internal("Music/cancer.ogg"));
 		music.setVolume(0.1f);

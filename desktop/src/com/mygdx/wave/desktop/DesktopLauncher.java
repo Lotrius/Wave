@@ -9,8 +9,9 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Wave";
-		config.height = 480;
-		config.width = 800;
+		config.width = Wave.V_WIDTH;
+		config.height = Wave.V_HEIGHT;
+		config.resizable = false;
 		new LwjglApplication(new Wave(), config);
 	}
 }

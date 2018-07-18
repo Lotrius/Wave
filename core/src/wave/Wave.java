@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Wave extends Game {
 	public SpriteBatch batch;
-	public int V_WIDTH = 800;
-	public int V_HEIGHT = 480;
+	public static final int V_WIDTH = 500;
+	public static final int V_HEIGHT = 500;
 	
 	@Override
 	public void create () {

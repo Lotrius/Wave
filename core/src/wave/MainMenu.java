@@ -15,7 +15,7 @@ public class MainMenu implements Screen {
 
 	public MainMenu(Wave game) {
 		this.game = game;
-		texture = new Texture("art/wave2.jpg");
+		texture = new Texture("art/wave.jpg");
 		music = Gdx.audio.newMusic(Gdx.files.internal("Music/tempIntroSong.ogg"));
 		music.setVolume(0.1f);
 		music.play();
