@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="art-1.tsx"/>
+ <tileset firstgid="901" source="teleport.tsx"/>
+ <layer name="Ground" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3YQQqDMBBG4cmim4LHaMFeowXdepfeHxOKG7FkQqX5jW/x4TZPDcbpzKwDAKCyazDrnR6h/nq/ucW1TfE6hLxRvOMuvD46NCz70SvtDcWOZT96qXa08l7RcWx0aKFDCx31bP1rpO95UnKW2cOv9379rzGG8rPMHs72DtGhjw4tdGihQ0tLHZPAOnJys6u3fXjn0usZ9eVPz9Jz3vPMo7cw59JCh5ZWOp6x4dVABwCUmgGgup7dECcAAA==
+  </data>
+ </layer>
+ <layer name="Collision" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAODfAC7KO00QJwAA
+  </data>
+ </layer>
+ <layer name="Top" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3YOQ6AMAwEQEt5P1fgwWxHTwNRZqTt14VduAoAxrK0qjXZkr193ea9I917cibXwHMwF/sHAAAAwF/5XQE83ERgZjfWxsQCECcAAA==
+  </data>
+ </layer>
+</map>
