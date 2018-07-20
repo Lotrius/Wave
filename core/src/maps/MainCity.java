@@ -3,15 +3,19 @@ package maps;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+
 import characters.Player;
+import characters.Warrior;
 import wave.Wave;
 
 public class MainCity extends InGameScreen{
 	private Wave game;
 	private Music music;
+	private Warrior player;
 	
 	public MainCity(Wave game) {
 		this.game = game;
@@ -22,6 +26,8 @@ public class MainCity extends InGameScreen{
 		mapRight = mapTop = mapWH * RATIO;
 		
 		renderer = new OrthogonalTiledMapRenderer(tiledMap, RATIO);
+		
+		player = new Warrior("SC", "Warrior", 1);
 		
 //		music = Gdx.audio.newMusic(Gdx.files.internal("Music/cancer.ogg"));
 //		music.setVolume(0.1f);
@@ -45,13 +51,17 @@ public class MainCity extends InGameScreen{
 			Gdx.app.exit();
 		}
 		
-		// Update based on update func
-		update(delta);
+
 		
 		// Set up camera and view
 		game.batch.setProjectionMatrix(cam.combined);
 		renderer.setView(cam);
 		renderer.render();
+		// Update based on update func
+		update(delta);
+		game.batch.begin();
+		game.batch.draw(player.getTexture(), 300, 50, 30, 30);
+		game.batch.end();
 	}
 	
 	@Override
