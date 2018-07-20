@@ -1,5 +1,7 @@
 package characters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Player {
@@ -15,9 +17,12 @@ public abstract class Player {
 		this.classType = classType;
 		this.level = level;
 		this.texture = texture;
+		final int PLAYER_WIDTH = 20;
+		final int PLAYER_HEIGHT = 20;
 	}
 	
 	public Texture getTexture() {
 		return this.texture;
 	}
+	
 }

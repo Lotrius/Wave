@@ -10,6 +10,6 @@ public class Warrior extends Player{
 	private Texture texture ;
 	
 	public Warrior (String name, String classType, int level) {
-		super(name, classType, level, new Texture(Gdx.files.internal("art/player.png")));
+		super(name, classType, level, new Texture(Gdx.files.internal("art/player.png"))); 
 	}
 }

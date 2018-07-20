@@ -18,7 +18,7 @@ public class MainMenu implements Screen {
 		texture = new Texture("art/wave.jpg");
 		music = Gdx.audio.newMusic(Gdx.files.internal("Music/tempIntroSong.ogg"));
 		music.setVolume(0.1f);
-		music.play();
+		music.play(); 
 	}
 
 	@Override

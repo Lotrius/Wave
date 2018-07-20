@@ -16,6 +16,10 @@ public class MainCity extends InGameScreen{
 	private Wave game;
 	private Music music;
 	private Warrior player;
+	private float x;
+	private float y;
+	private final int PLAYER_WIDTH = 20;
+	private final int PLAYER_HEIGHT = 20;
 	
 	public MainCity(Wave game) {
 		this.game = game;
@@ -29,6 +33,9 @@ public class MainCity extends InGameScreen{
 		
 		player = new Warrior("SC", "Warrior", 1);
 		
+		x = 30;
+		y = 40;
+		
 //		music = Gdx.audio.newMusic(Gdx.files.internal("Music/cancer.ogg"));
 //		music.setVolume(0.1f);
 //		music.play();
@@ -41,7 +48,7 @@ public class MainCity extends InGameScreen{
 			cam.update();
 		}
 		
-		moveCam(delta);
+
 	}
 	
 	@Override
@@ -50,18 +57,21 @@ public class MainCity extends InGameScreen{
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
-		
 
-		
 		// Set up camera and view
 		game.batch.setProjectionMatrix(cam.combined);
 		renderer.setView(cam);
 		renderer.render();
+		
 		// Update based on update func
-		update(delta);
+		//update(delta);
+		
+		moveChar(delta, x, y);
+		
 		game.batch.begin();
-		game.batch.draw(player.getTexture(), 300, 50, 30, 30);
+		game.batch.draw(player.getTexture(), x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		game.batch.end();
+
 	}
 	
 	@Override

@@ -37,41 +37,58 @@ public class InGameScreen implements Screen{
 	}
 	
 	
-	protected void moveCam(float delta) {
+	protected void moveChar(float delta, float x, float y) {
 		camHalf = cam.viewportWidth / 2; // Half the size of the camera
-		
-		// Move cam vertically
 		if (Gdx.input.isKeyPressed(Keys.UP)) {
-			cam.position.y += Player.SPEED * delta;
+			System.out.println("HI");
+			y += Player.SPEED * delta;
+			cam.position.y = y;
+			if (y >= mapTop) {
+				y = mapTop;
+			}
+			if (y >= mapTop - camHalf) {
+				cam.position.y = mapTop - camHalf;
+			} else if (cam.position.y <= camHalf) {
+				cam.position.y = camHalf;
+			}
 			cam.update();
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			cam.position.y -= Player.SPEED * delta;
+			y -= Player.SPEED * delta;
+			cam.position.y = y;
+			if (y <= 0) {
+				y = 0;
+			}
+			if (y <= camHalf) {
+				cam.position.y = camHalf;
+			} else if (cam.position.y >= mapTop - camHalf) {
+				cam.position.y = mapTop - camHalf;
+			}
 			cam.update();
 		} 
-		
 		// Move cam horizontally
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			cam.position.x -= Player.SPEED * delta;
+			x -= Player.SPEED * delta;
+			cam.position.x = x;
+			if (x <= 0) {
+				x = 0;
+			}
+			if (x >= mapRight - camHalf) {
+				cam.position.x = mapRight - camHalf;
+			} else if (cam.position.x <= camHalf) {
+				cam.position.x = camHalf;
+			} 
 			cam.update();
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			cam.position.x += Player.SPEED * delta;
-			cam.update();
-		}
-		
-		// Keep cam from moving past borders
-		if (cam.position.x < camHalf) {
-			cam.position.x = camHalf;
-			cam.update();
-		} else if (cam.position.x > mapRight - camHalf) {
-			cam.position.x = mapRight - camHalf;
-			cam.update();
-		}
-		
-		if (cam.position.y < camHalf) {
-			cam.position.y = camHalf;
-			cam.update();
-		} else if (cam.position.y > mapTop - camHalf) {
-			cam.position.y = mapTop - camHalf;
+			x += Player.SPEED * delta;
+			cam.position.x = x;
+			if (x >= mapRight) {
+				x = mapRight;
+			}
+			if (x <= camHalf) {
+				cam.position.x = camHalf;
+			} else if (cam.position.x >= mapRight - camHalf) {
+				cam.position.x = mapRight - camHalf;
+			}
 			cam.update();
 		}
 	}
@@ -86,10 +103,8 @@ public class InGameScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
-		// Move camera
-		moveCam(delta);
-//		Gdx.gl.glClearColor(1, 0, 0, 1);
-//		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		
 	}
 
 
@@ -125,5 +140,5 @@ public class InGameScreen implements Screen{
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
-	}
+	} 
 }
