@@ -16,7 +16,6 @@ import wave.Wave;
 
 public abstract class InGameScreen implements Screen{
 	protected TiledMap tiledMap;
-	protected TiledMapTileLayer mainLayer;
 	protected int tileSize;
 	protected float mapWH;
 	protected float mapRight;
@@ -118,6 +117,13 @@ public abstract class InGameScreen implements Screen{
 			}
 		}
 		cam.update();
+	}
+	
+	
+	protected float getMapWH(TiledMap map) {
+		// Get width/height of map
+		TiledMapTileLayer mainLayer = (TiledMapTileLayer) map.getLayers().get("Ground");
+		return mainLayer.getWidth() * mainLayer.getTileWidth();  
 	}
 
 	@Override

@@ -15,18 +15,16 @@ import wave.Wave;
 public class MainCity extends InGameScreen{
 	private Wave game;
 	private Music music;
-	private Warrior player;
+	private Player player;
 	
 	public MainCity(Wave game , Player player) {
 		// Set up parameters
 		this.game = game;
-		this.player = (Warrior) player;
+		this.player = player;
 		
 		// Create new tiled map and get dimensions
 		tiledMap = new TmxMapLoader().load("map/PortalArea1/portal_area_1.tmx");
-		mainLayer = (TiledMapTileLayer) tiledMap.getLayers().get("Ground");
-		tileSize = (int) mainLayer.getTileWidth();
-		mapWH = mainLayer.getWidth() * tileSize;  
+		mapWH = getMapWH(tiledMap);
 		mapRight = mapTop = mapWH * RATIO;
 		
 		// Rrrrrrrrrenderer
