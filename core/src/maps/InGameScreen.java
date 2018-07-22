@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import characters.Player;
 import wave.Wave;
 
-public class InGameScreen implements Screen{
+public abstract class InGameScreen implements Screen{
 	protected TiledMap tiledMap;
 	protected TiledMapTileLayer mainLayer;
 	protected int tileSize;
@@ -33,6 +33,10 @@ public class InGameScreen implements Screen{
 	protected float x;
 	protected float y;
 	
+
+	protected final int PLAYER_WIDTH = 20;
+	protected final int PLAYER_HEIGHT = 20;
+	
 	protected InGameScreen() {
 		cam = new OrthographicCamera();
 		viewport = new FitViewport(Wave.V_WIDTH, Wave.V_HEIGHT, cam);
@@ -43,58 +47,77 @@ public class InGameScreen implements Screen{
 	protected void moveChar(float delta) {
 		camHalf = cam.viewportWidth / 2; // Half the size of the camera
 		if (Gdx.input.isKeyPressed(Keys.UP)) {
+			// Move player and camera
 			y += Player.SPEED * delta;
 			cam.position.y = y;
-			if (y >= mapTop) {
-				y = mapTop;
+			
+			// If player goes tries to go above map, stop them
+			if (y >= mapTop - PLAYER_HEIGHT) {
+				y = mapTop - PLAYER_HEIGHT;
 			}
+			
+			// Stop camera when player goes farther than camera can go
+			// Restart when appropriate
 			if (y >= mapTop - camHalf) {
 				cam.position.y = mapTop - camHalf;
 			} else if (cam.position.y <= camHalf) {
 				cam.position.y = camHalf;
 			}
-			cam.update();
 		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+			// Move player and camera
 			y -= Player.SPEED * delta;
 			cam.position.y = y;
+			
+			// If player goes tries to go below map, stop them
 			if (y <= 0) {
 				y = 0;
 			}
+			
+			// Stop camera when player goes farther than camera can go
+			// Restart when appropriate
 			if (y <= camHalf) {
 				cam.position.y = camHalf;
 			} else if (cam.position.y >= mapTop - camHalf) {
 				cam.position.y = mapTop - camHalf;
 			}
-			cam.update();
 		} 
 		// Move cam horizontally
 		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+			// Move player and camera
 			x -= Player.SPEED * delta;
 			cam.position.x = x;
+			
+			// If player goes tries to go to left of map, stop them
 			if (x <= 0) {
 				x = 0;
 			}
+			
+			// Stop camera when player goes farther than camera can go
+			// Restart when appropriate
 			if (x >= mapRight - camHalf) {
 				cam.position.x = mapRight - camHalf;
 			} else if (cam.position.x <= camHalf) {
 				cam.position.x = camHalf;
 			} 
-			cam.update();
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			
+			// Move player and camera
 			x += Player.SPEED * delta;
-			System.out.println(x);
 			cam.position.x = x;
-			if (x >= mapRight) {
-				x = mapRight;
+			
+			// If player goes tries to go to right of map, stop them
+			if (x >= mapRight - PLAYER_WIDTH) {
+				x = mapRight - PLAYER_WIDTH;
 			}
+			
+			// Stop camera when player goes farther than camera can go
+			// Restart when appropriate
 			if (x <= camHalf) {
 				cam.position.x = camHalf;
 			} else if (cam.position.x >= mapRight - camHalf) {
 				cam.position.x = mapRight - camHalf;
 			}
-			cam.update();
 		}
+		cam.update();
 	}
 
 	@Override

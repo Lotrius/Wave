@@ -16,21 +16,23 @@ public class MainCity extends InGameScreen{
 	private Wave game;
 	private Music music;
 	private Warrior player;
-	private final int PLAYER_WIDTH = 20;
-	private final int PLAYER_HEIGHT = 20;
 	
-	public MainCity(Wave game) {
+	public MainCity(Wave game , Player player) {
+		// Set up parameters
 		this.game = game;
+		this.player = (Warrior) player;
+		
+		// Create new tiled map and get dimensions
 		tiledMap = new TmxMapLoader().load("map/PortalArea1/portal_area_1.tmx");
 		mainLayer = (TiledMapTileLayer) tiledMap.getLayers().get("Ground");
 		tileSize = (int) mainLayer.getTileWidth();
 		mapWH = mainLayer.getWidth() * tileSize;  
 		mapRight = mapTop = mapWH * RATIO;
 		
+		// Rrrrrrrrrenderer
 		renderer = new OrthogonalTiledMapRenderer(tiledMap, RATIO);
 		
-		player = new Warrior("SC", "Warrior", 1);
-		
+		// Starting position
 		x = 30;
 		y = 40;
 		
@@ -38,20 +40,10 @@ public class MainCity extends InGameScreen{
 //		music.setVolume(0.1f);
 //		music.play();
 	}
-
-	public void update(float delta) {
-		// Move based on mouse movement
-		if (Gdx.input.isTouched()) {
-			cam.translate(Gdx.input.getDeltaX(), Gdx.input.getDeltaY());
-			cam.update();
-		}
-		
-
-	}
 	
 	@Override
 	public void render(float delta) {
-		// Exit if pressed
+		// Exit if ESC pressed
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
@@ -61,8 +53,10 @@ public class MainCity extends InGameScreen{
 		renderer.setView(cam);
 		renderer.render();
 
+		// Call the superclass render function to do movement
 		super.render(delta);
 		
+		// Draw player and constantly update
 		game.batch.begin();
 		game.batch.draw(player.getTexture(), x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 		game.batch.end();
