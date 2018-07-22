@@ -30,6 +30,9 @@ public class InGameScreen implements Screen{
 	protected Viewport viewport;
 	protected OrthogonalTiledMapRenderer renderer;
 	
+	protected float x;
+	protected float y;
+	
 	protected InGameScreen() {
 		cam = new OrthographicCamera();
 		viewport = new FitViewport(Wave.V_WIDTH, Wave.V_HEIGHT, cam);
@@ -37,10 +40,9 @@ public class InGameScreen implements Screen{
 	}
 	
 	
-	protected void moveChar(float delta, float x, float y) {
+	protected void moveChar(float delta) {
 		camHalf = cam.viewportWidth / 2; // Half the size of the camera
 		if (Gdx.input.isKeyPressed(Keys.UP)) {
-			System.out.println("HI");
 			y += Player.SPEED * delta;
 			cam.position.y = y;
 			if (y >= mapTop) {
@@ -79,7 +81,9 @@ public class InGameScreen implements Screen{
 			} 
 			cam.update();
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			
 			x += Player.SPEED * delta;
+			System.out.println(x);
 			cam.position.x = x;
 			if (x >= mapRight) {
 				x = mapRight;
@@ -93,7 +97,6 @@ public class InGameScreen implements Screen{
 		}
 	}
 
-
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
@@ -103,8 +106,7 @@ public class InGameScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
-		
-		
+		moveChar(delta);
 	}
 
 

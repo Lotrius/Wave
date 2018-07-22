@@ -16,8 +16,6 @@ public class MainCity extends InGameScreen{
 	private Wave game;
 	private Music music;
 	private Warrior player;
-	private float x;
-	private float y;
 	private final int PLAYER_WIDTH = 20;
 	private final int PLAYER_HEIGHT = 20;
 	
@@ -62,11 +60,8 @@ public class MainCity extends InGameScreen{
 		game.batch.setProjectionMatrix(cam.combined);
 		renderer.setView(cam);
 		renderer.render();
-		
-		// Update based on update func
-		//update(delta);
-		
-		moveChar(delta, x, y);
+
+		super.render(delta);
 		
 		game.batch.begin();
 		game.batch.draw(player.getTexture(), x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
