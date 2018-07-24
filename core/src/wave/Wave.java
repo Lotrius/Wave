@@ -10,23 +10,22 @@ public class Wave extends Game {
 	public SpriteBatch batch;
 	public static final int V_WIDTH = 500;
 	public static final int V_HEIGHT = 500;
-	
+
 	@Override
-	public void create () {
+	public void create() {
 		// New spritebatch for images
 		batch = new SpriteBatch();
-		
+
 		// Set the screen to the main menu
 		setScreen(new MainMenu(this));
 	}
 
 	@Override
-	public void render () {
-		super.render();
+	public void render() {
+		super.render(); 
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 	}
 }
-

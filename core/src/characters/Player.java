@@ -10,19 +10,18 @@ public abstract class Player {
 	private String classType;
 	private int level;
 	private Texture texture;
-	
-	
-	public Player (String name, String classType, int level, Texture texture) {
-		this.name = name;
+
+	public Player(String name, String classType, int level, Texture texture) {
+		this.name = name; 
 		this.classType = classType;
 		this.level = level;
 		this.texture = texture;
 		final int PLAYER_WIDTH = 20;
 		final int PLAYER_HEIGHT = 20;
 	}
-	
+
 	public Texture getTexture() {
 		return this.texture;
 	}
-	
+
 }
