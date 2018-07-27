@@ -17,7 +17,7 @@ public class MainMenu implements Screen {
 	// How many global variables do you think we'll have by the end of this game
 	private Wave game;
 	private Music music;
-	private Texture mainMenuImage, playButton, playHover, exitButton, exitHover;
+	private Texture mainMenuImage, play, playHover, exit, exitHover, options,  optionsHover;
 	private Player player;
 	private int buttonWidth, buttonHeight, middle;
 	BitmapFont font;
@@ -34,11 +34,13 @@ public class MainMenu implements Screen {
 		middle = 2;
 
 		// Main menu image
-		mainMenuImage = new Texture("art/wave.jpg");
-		playButton = new Texture("art/play.png");
-		playHover = new Texture("art/play_hover.png");
-		exitButton = new Texture("art/exit.png");
-		exitHover = new Texture("art/exit_hover.png");
+		mainMenuImage = new Texture("art/main_menu/wave.jpg");
+		play = new Texture("art/main_menu/play.png"); 
+		playHover = new Texture("art/main_menu/play_hover.png");
+		exit = new Texture("art/main_menu/exit.png");
+		exitHover = new Texture("art/main_menu/exit_hover.png");
+		options = new Texture("art/main_menu/options.png");
+		optionsHover = new Texture("art/main_menu/options_hover.png");
 
 		// Main menu music
 		music = Gdx.audio
@@ -81,8 +83,43 @@ public class MainMenu implements Screen {
 				}
 			});
 		} else {
-			game.batch.draw(playButton, playX - playOffsetX,
+			game.batch.draw(play, playX - playOffsetX,
 					playY - playOffsetY);
+		}
+	}
+	
+	public void drawOptions() {
+		float optionsLocation = 2.75f;
+		int optionsX = Wave.V_WIDTH / middle;
+		int optionsOffsetX = buttonWidth / middle;
+
+		float optionsY = Wave.V_HEIGHT / optionsLocation;
+		int optionsOffsetY = buttonHeight / 2;
+		
+//		System.out.println("Greater than " + (exitY - exitOffsetY) + " Less than " + (exitY + exitOffsetY));
+
+		// If play button is pressed, create a new warrior
+		// Then set screen to the main city giving game and player as parameters
+		if ((Gdx.input.getX() > optionsX - optionsOffsetX)
+				&& (Gdx.input.getX() < optionsX + optionsOffsetX)
+				&& (Gdx.input.getY() > Wave.V_HEIGHT - optionsY - optionsOffsetY)
+				&& (Gdx.input.getY() < Wave.V_HEIGHT - optionsY + optionsOffsetY)) {
+
+			game.batch.draw(optionsHover, optionsX - optionsOffsetX,
+					optionsY - optionsOffsetY);
+
+			Gdx.input.setInputProcessor(new InputAdapter() {
+				public boolean touchDown(int screenX, int screenY, int pointer,
+						int button) {
+					if (button == Buttons.LEFT) {
+						//TODO make options
+					}
+					return true;
+				}
+			});
+		} else {
+			game.batch.draw(options, optionsX - optionsOffsetX, 
+					optionsY - optionsOffsetY);
 		}
 	}
 
@@ -92,9 +129,9 @@ public class MainMenu implements Screen {
 		int exitOffsetX = buttonWidth / middle;
 
 		int exitY = Wave.V_HEIGHT / exitLocation;
-		int exitOffsetY = buttonHeight / exitLocation;
+		int exitOffsetY = buttonHeight / 2;
 		
-		System.out.println("Greater than " + (exitY - exitOffsetY) + " Less than " + (exitY + exitOffsetY));
+//		System.out.println("Greater than " + (exitY - exitOffsetY) + " Less than " + (exitY + exitOffsetY));
 
 		// If play button is pressed, create a new warrior
 		// Then set screen to the main city giving game and player as parameters
@@ -116,7 +153,7 @@ public class MainMenu implements Screen {
 				}
 			});
 		} else {
-			game.batch.draw(exitButton, exitX - exitOffsetX,
+			game.batch.draw(exit, exitX - exitOffsetX,
 					exitY - exitOffsetY);
 		}
 	}
@@ -142,6 +179,8 @@ public class MainMenu implements Screen {
 		font.draw(game.batch, Integer.toString(Gdx.input.getY()), 30, 30);
 
 		drawPlay();
+		
+		drawOptions();
 
 		drawExit();
 
