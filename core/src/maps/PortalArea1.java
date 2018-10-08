@@ -21,7 +21,7 @@ import characters.Player;
 import characters.Warrior;
 import wave.Wave;
 
-public class MainCity extends InGameScreen {
+public class PortalArea1 extends InGameScreen {
 	private Wave game;
 	private Music music;
 	private Sound grass;
@@ -29,7 +29,7 @@ public class MainCity extends InGameScreen {
 
 	protected MapObjects collisionObjects;
 
-	public MainCity(Wave game, Player player) {
+	public PortalArea1(Wave game, Player player) {
 
 		font = new BitmapFont();
 		// Set up parameters
@@ -37,7 +37,7 @@ public class MainCity extends InGameScreen {
 		this.player = player;
 
 		// Create new tiled map and get dimensions
-		tiledMap = new TmxMapLoader().load("map/MainTown/main_town.tmx");
+		tiledMap = new TmxMapLoader().load("map/PortalArea1/portal_area_1.tmx");
 		mapWH = getMapWH(tiledMap);
 		mapRight = mapTop = mapWH * RATIO;
 
@@ -45,10 +45,10 @@ public class MainCity extends InGameScreen {
 		renderer = new OrthogonalTiledMapRenderer(tiledMap, RATIO);
 
 		// Starting position
-		x = 550;
-		y = 600;
+		x = 1550;
+		y = 800;
 
-		cam.position.x = x;
+		cam.position.x = 1325;
 		cam.position.y = y;
 
 		collisionObjects = tiledMap.getLayers().get("Collision-2").getObjects();
@@ -61,7 +61,7 @@ public class MainCity extends InGameScreen {
 		// music.play();
 	}
 
-	protected void checkCollision() {
+	public void checkCollision() {
 		for (RectangleMapObject rectangleObject : collisionObjects
 				.getByType(RectangleMapObject.class)) {
 			Rectangle rectangle = rectangleObject.getRectangle();
@@ -72,10 +72,10 @@ public class MainCity extends InGameScreen {
 	}
 
 	public void changeMap() {
-		if (player.getX() <= 0 && player.getY() > 760 && player.getY() < 830
-				&& Gdx.input.isKeyPressed(Keys.LEFT)) {
+		if (player.getX() >= 1580 && player.getY() > 760 && player.getY() < 830
+				&& Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			this.dispose();
-			game.setScreen(new PortalArea1(game, player));
+			game.setScreen(new MainCity(game, player));
 		}
 	}
 

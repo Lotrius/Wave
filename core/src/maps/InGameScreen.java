@@ -5,9 +5,14 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polyline;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -35,6 +40,8 @@ public abstract class InGameScreen implements Screen {
 	protected final int PLAYER_WIDTH = 20;
 	protected final int PLAYER_HEIGHT = 20;
 
+	protected Player player;
+
 	protected InGameScreen() {
 		cam = new OrthographicCamera();
 		viewport = new FitViewport(Wave.V_WIDTH, Wave.V_HEIGHT, cam);
@@ -42,10 +49,12 @@ public abstract class InGameScreen implements Screen {
 				Gdx.graphics.getHeight());
 	}
 
+
+
 	protected void moveChar(float delta) {
 		camHalf = cam.viewportWidth / 2; // Half the size of the camera
 		if (Gdx.input.isKeyPressed(Keys.UP)) {
-			// Move player and camera 
+			// Move player and camera
 			y += Player.SPEED * delta;
 			cam.position.y = y;
 
@@ -91,7 +100,7 @@ public abstract class InGameScreen implements Screen {
 			}
 
 			// Stop camera when player goes farther than camera can go
-			// Restart when appropriate
+			// Restart when appropriate 
 			if (x >= mapRight - camHalf) {
 				cam.position.x = mapRight - camHalf;
 			} else if (cam.position.x <= camHalf) {
@@ -104,7 +113,7 @@ public abstract class InGameScreen implements Screen {
 
 			// If player goes tries to go to right of map, stop them
 			if (x >= mapRight - PLAYER_WIDTH) {
-				x = mapRight - PLAYER_WIDTH;
+				x = mapRight - PLAYER_WIDTH; 
 			}
 
 			// Stop camera when player goes farther than camera can go

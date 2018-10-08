@@ -32,7 +32,7 @@ public class MainMenu implements Screen {
 		buttonWidth = 150;
 		buttonHeight = 65;
 		middle = 2;
-
+ 
 		// Main menu image
 		mainMenuImage = new Texture("art/main_menu/wave.jpg");
 		play = new Texture("art/main_menu/play.png"); 
@@ -57,7 +57,7 @@ public class MainMenu implements Screen {
 
 	public void drawPlay() {
 		int playLocation = 2;
-		int playX = Wave.V_WIDTH / middle;
+		int playX = Wave.V_WIDTH / middle; 
 		int playOffsetX = buttonWidth / middle;
 
 		int playY = Wave.V_HEIGHT / middle;
@@ -98,8 +98,6 @@ public class MainMenu implements Screen {
 		
 //		System.out.println("Greater than " + (exitY - exitOffsetY) + " Less than " + (exitY + exitOffsetY));
 
-		// If play button is pressed, create a new warrior
-		// Then set screen to the main city giving game and player as parameters
 		if ((Gdx.input.getX() > optionsX - optionsOffsetX)
 				&& (Gdx.input.getX() < optionsX + optionsOffsetX)
 				&& (Gdx.input.getY() > Wave.V_HEIGHT - optionsY - optionsOffsetY)
@@ -130,11 +128,7 @@ public class MainMenu implements Screen {
 
 		int exitY = Wave.V_HEIGHT / exitLocation;
 		int exitOffsetY = buttonHeight / 2;
-		
-//		System.out.println("Greater than " + (exitY - exitOffsetY) + " Less than " + (exitY + exitOffsetY));
 
-		// If play button is pressed, create a new warrior
-		// Then set screen to the main city giving game and player as parameters
 		if ((Gdx.input.getX() > exitX - exitOffsetX)
 				&& (Gdx.input.getX() < exitX + exitOffsetX)
 				&& (Gdx.input.getY() > Wave.V_HEIGHT - exitY - exitOffsetY)
@@ -174,7 +168,7 @@ public class MainMenu implements Screen {
 		// Draw the main menu image
 		game.batch.begin();
 
-		game.batch.draw(mainMenuImage, 0, 0);
+		game.batch.draw(mainMenuImage, 0, 0, Wave.V_WIDTH, Wave.V_HEIGHT);
 		
 		font.draw(game.batch, Integer.toString(Gdx.input.getY()), 30, 30);
 
