@@ -69,11 +69,11 @@ public class MainMenu implements Screen {
 				&& (Gdx.input.getX() < playX + playOffsetX)
 				&& (Gdx.input.getY() > playY - playOffsetY)
 				&& (Gdx.input.getY() < playY + playOffsetY)) {
-
+ 
 			game.batch.draw(playHover, playX - playOffsetX,
 					playY - playOffsetY); // Change button color if hovering
 
-			Gdx.input.setInputProcessor(new InputAdapter() {
+			Gdx.input.setInputProcessor(new InputAdapter() { 
 				public boolean touchDown(int screenX, int screenY, int pointer,
 						int button) {
 					if (button == Buttons.LEFT) {

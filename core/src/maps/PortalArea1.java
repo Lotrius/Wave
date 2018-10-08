@@ -6,8 +6,11 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 
 import characters.Player;
 import characters.Warrior;
@@ -18,7 +21,7 @@ public class PortalArea1 extends InGameScreen {
 	private Music music;
 	private Sound grass;
 	BitmapFont font;
-	private MapObjects collisionObjects;
+	private MapObjects collisionObjects, easyPortal;
 
 
 	public PortalArea1(Wave game, Player player) {
@@ -47,6 +50,9 @@ public class PortalArea1 extends InGameScreen {
 		// Get collision objects
 		collisionObjects = tiledMap.getLayers().get("Collision-2").getObjects();
 		
+		// Get easy portal object
+		easyPortal = tiledMap.getLayers().get("EasyPortal").getObjects();
+		
 		// Grass sound effect
 		grass = Gdx.audio.newSound(Gdx.files.internal("sounds/grass.ogg"));
 
@@ -58,6 +64,17 @@ public class PortalArea1 extends InGameScreen {
 	public void checkCollision() {
 		// Call checkCollision() in super class
 		super.checkCollision(collisionObjects);
+		
+		for (RectangleMapObject rectangleObject : easyPortal
+				.getByType(RectangleMapObject.class)) {
+			Rectangle rectangle = rectangleObject.getRectangle();
+			if (Intersector.overlaps(rectangle, player.getBody())) {
+				if(Gdx.input.isKeyPressed(Keys.Z)) {
+					this.dispose();
+					game.setScreen(new EasyPortal(game, player));
+				}
+			}
+		}
 	}
 
 	public void changeMap() {

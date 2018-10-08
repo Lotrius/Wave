@@ -141,8 +141,7 @@ public abstract class InGameScreen implements Screen {
 
 	protected float getMapWH(TiledMap map) {
 		// Get width/height of map
-		TiledMapTileLayer mainLayer =
-				(TiledMapTileLayer) map.getLayers().get("Ground");
+		TiledMapTileLayer mainLayer = (TiledMapTileLayer) map.getLayers().get("Ground");
 		return mainLayer.getWidth() * mainLayer.getTileWidth();
 	}
 
