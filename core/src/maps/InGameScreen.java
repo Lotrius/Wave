@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -55,7 +56,9 @@ public abstract class InGameScreen implements Screen {
 				.getByType(RectangleMapObject.class)) {
 			Rectangle rectangle = rectangleObject.getRectangle();
 			if (Intersector.overlaps(rectangle, player.getBody())) {
-				System.out.println("HI"); 
+				if(Gdx.input.isKeyPressed(Keys.UP)) {
+					System.out.println("HI");
+				}
 			}
 		}
 	}
