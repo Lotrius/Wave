@@ -1,8 +1,6 @@
 package wave;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Wave extends Game {
@@ -22,6 +20,7 @@ public class Wave extends Game {
 
 	@Override
 	public void render() {
+		// Call render in super class
 		super.render();
 	}
 

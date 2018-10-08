@@ -71,20 +71,20 @@ public class MainMenu implements Screen {
 				&& (Gdx.input.getY() < playY + playOffsetY)) {
 
 			game.batch.draw(playHover, playX - playOffsetX,
-					playY - playOffsetY);
+					playY - playOffsetY); // Change button color if hovering
 
 			Gdx.input.setInputProcessor(new InputAdapter() {
 				public boolean touchDown(int screenX, int screenY, int pointer,
 						int button) {
 					if (button == Buttons.LEFT) {
-						setGameScreen();
+						setGameScreen(); // Change game screen on click
 					}
 					return true;
 				}
 			});
 		} else {
 			game.batch.draw(play, playX - playOffsetX,
-					playY - playOffsetY);
+					playY - playOffsetY); // Change button color if not hovering
 		}
 	}
 	
@@ -95,16 +95,15 @@ public class MainMenu implements Screen {
 
 		float optionsY = Wave.V_HEIGHT / optionsLocation;
 		int optionsOffsetY = buttonHeight / 2;
-		
-//		System.out.println("Greater than " + (exitY - exitOffsetY) + " Less than " + (exitY + exitOffsetY));
 
+		// If player clicks options, go to options page
 		if ((Gdx.input.getX() > optionsX - optionsOffsetX)
 				&& (Gdx.input.getX() < optionsX + optionsOffsetX)
 				&& (Gdx.input.getY() > Wave.V_HEIGHT - optionsY - optionsOffsetY)
 				&& (Gdx.input.getY() < Wave.V_HEIGHT - optionsY + optionsOffsetY)) {
 
 			game.batch.draw(optionsHover, optionsX - optionsOffsetX,
-					optionsY - optionsOffsetY);
+					optionsY - optionsOffsetY); // Change button color if hovering
 
 			Gdx.input.setInputProcessor(new InputAdapter() {
 				public boolean touchDown(int screenX, int screenY, int pointer,
@@ -117,7 +116,7 @@ public class MainMenu implements Screen {
 			});
 		} else {
 			game.batch.draw(options, optionsX - optionsOffsetX, 
-					optionsY - optionsOffsetY);
+					optionsY - optionsOffsetY); // change button color if not hovering
 		}
 	}
 
@@ -129,26 +128,27 @@ public class MainMenu implements Screen {
 		int exitY = Wave.V_HEIGHT / exitLocation;
 		int exitOffsetY = buttonHeight / 2;
 
+		// Exit game if clicked
 		if ((Gdx.input.getX() > exitX - exitOffsetX)
 				&& (Gdx.input.getX() < exitX + exitOffsetX)
 				&& (Gdx.input.getY() > Wave.V_HEIGHT - exitY - exitOffsetY)
 				&& (Gdx.input.getY() < Wave.V_HEIGHT - exitY + exitOffsetY)) {
 
 			game.batch.draw(exitHover, exitX - exitOffsetX,
-					exitY - exitOffsetY);
+					exitY - exitOffsetY); // Change button color if hovering
 
 			Gdx.input.setInputProcessor(new InputAdapter() {
 				public boolean touchDown(int screenX, int screenY, int pointer,
 						int button) {
 					if (button == Buttons.LEFT) {
-						Gdx.app.exit();
+						Gdx.app.exit(); // Exit
 					}
 					return true;
 				}
 			});
 		} else {
 			game.batch.draw(exit, exitX - exitOffsetX,
-					exitY - exitOffsetY);
+					exitY - exitOffsetY); // Change button color if not hovering
 		}
 	}
 
@@ -168,14 +168,12 @@ public class MainMenu implements Screen {
 		// Draw the main menu image
 		game.batch.begin();
 
-		game.batch.draw(mainMenuImage, 0, 0, Wave.V_WIDTH, Wave.V_HEIGHT);
+		game.batch.draw(mainMenuImage, 0, 0, Wave.V_WIDTH, Wave.V_HEIGHT); // Background
 		
 		font.draw(game.batch, Integer.toString(Gdx.input.getY()), 30, 30);
 
 		drawPlay();
-		
 		drawOptions();
-
 		drawExit();
 
 		game.batch.end();
@@ -191,7 +189,7 @@ public class MainMenu implements Screen {
 	public void pause() {
 		// TODO Auto-generated method stub
 
-	}
+	} 
 
 	@Override
 	public void resume() {

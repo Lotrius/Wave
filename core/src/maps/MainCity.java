@@ -4,18 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.PolylineMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polyline;
-import com.badlogic.gdx.math.Rectangle;
 
 import characters.Player;
 import characters.Warrior;
@@ -27,10 +19,9 @@ public class MainCity extends InGameScreen {
 	private Sound grass;
 	BitmapFont font;
 
-	protected MapObjects collisionObjects;
+	private MapObjects collisionObjects;
 
 	public MainCity(Wave game, Player player) {
-
 		font = new BitmapFont();
 		// Set up parameters
 		this.game = game;
@@ -47,13 +38,15 @@ public class MainCity extends InGameScreen {
 		// Starting position
 		x = 550;
 		y = 600;
-
+		
+		// Camera position
 		cam.position.x = x;
 		cam.position.y = y;
-
+		
+		// Get collision objects
 		collisionObjects = tiledMap.getLayers().get("Collision-2").getObjects();
-		System.out.println(collisionObjects.getCount());
-
+		
+		// Grass sound effect
 		grass = Gdx.audio.newSound(Gdx.files.internal("sounds/grass.ogg"));
 
 		// music = Gdx.audio.newMusic(Gdx.files.internal("Music/cancer.ogg"));
@@ -62,16 +55,13 @@ public class MainCity extends InGameScreen {
 	}
 
 	protected void checkCollision() {
-		for (RectangleMapObject rectangleObject : collisionObjects
-				.getByType(RectangleMapObject.class)) {
-			Rectangle rectangle = rectangleObject.getRectangle();
-			if (Intersector.overlaps(rectangle, player.getBody())) {
-				System.out.println("HI");
-			}
-		}
+		// Call checkCollision() in super class
+		super.checkCollision(collisionObjects);
 	}
 
 	public void changeMap() {
+		// If the player tries to take the road to the portal area, dispose of current screen
+		// and load portal area
 		if (player.getX() <= 0 && player.getY() > 760 && player.getY() < 830
 				&& Gdx.input.isKeyPressed(Keys.LEFT)) {
 			this.dispose();
@@ -85,16 +75,13 @@ public class MainCity extends InGameScreen {
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
 			Gdx.app.exit();
 		}
-
-		if (Gdx.input.isKeyPressed(Keys.K)) {
-			grass.play(1.0f);
-		}
-
+		
 		// Set up camera and view
 		game.batch.setProjectionMatrix(cam.combined);
 		renderer.setView(cam);
 		renderer.render();
-
+		
+		// Check for collisions or map changes
 		checkCollision();
 		changeMap();
 
@@ -114,14 +101,16 @@ public class MainCity extends InGameScreen {
 				player.getX() - 10, player.getY() - 10);
 		font.draw(game.batch, String.format("%.0f", player.getY()),
 				player.getX() + 20, player.getY() - 10);
+		
 		game.batch.end();
 
 	}
 
 	@Override
 	public void dispose() {
-		// Destroy music
+		// Destroy everything
 		// music.dispose();
+		// grass.dispose()
 	}
 
 }

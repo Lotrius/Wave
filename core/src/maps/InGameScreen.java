@@ -3,16 +3,14 @@ package maps;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.PolylineMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polyline;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -21,7 +19,7 @@ import wave.Wave;
 
 public abstract class InGameScreen implements Screen {
 	protected TiledMap tiledMap;
-	protected int tileSize;
+	protected int tileSize; 
 	protected float mapWH;
 	protected float mapRight;
 	protected float mapTop;
@@ -43,13 +41,24 @@ public abstract class InGameScreen implements Screen {
 	protected Player player;
 
 	protected InGameScreen() {
+		// Set up camera
 		cam = new OrthographicCamera();
 		viewport = new FitViewport(Wave.V_WIDTH, Wave.V_HEIGHT, cam);
 		cam.setToOrtho(false, Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 	}
 
-
+	protected void checkCollision(MapObjects collisionObjects) {
+		// Go through the map objects and if any is a rectangular object
+		// and the player intersects with it, there has been a collision
+		for (RectangleMapObject rectangleObject : collisionObjects
+				.getByType(RectangleMapObject.class)) {
+			Rectangle rectangle = rectangleObject.getRectangle();
+			if (Intersector.overlaps(rectangle, player.getBody())) {
+				System.out.println("HI"); 
+			}
+		}
+	}
 
 	protected void moveChar(float delta) {
 		camHalf = cam.viewportWidth / 2; // Half the size of the camera
