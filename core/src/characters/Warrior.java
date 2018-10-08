@@ -10,6 +10,32 @@ public class Warrior extends Player{
 	private Texture texture ;
 	
 	public Warrior (String name, String classType, int level) {
-		super(name, classType, level, new Texture(Gdx.files.internal("art/player.png"))); 
+		super(name, classType, level, new Texture(Gdx.files.internal("art/character.png"))); 
+	}
+	
+	public void dash() {
+		
+	}
+	
+	public void smash() {
+		
+	}
+	
+	public void powerUp() {
+		
+	}
+	
+	public void pull() {
+		
+	}
+	
+	public void stab() {
+		
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -49,5 +49,7 @@ public abstract class Player {
 	public void setY(float y) {
 		this.y = y;
 	}
+	
+	public abstract void attack();
 
 }
