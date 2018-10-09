@@ -96,7 +96,9 @@ public class MainCity extends InGameScreen {
 		game.batch.begin();
 
 		game.batch.draw(player.getTexture(), player.getX(), player.getY(),
-				PLAYER_WIDTH, PLAYER_HEIGHT);
+				PLAYER_WIDTH, PLAYER_HEIGHT); // Player
+		
+		// Coordinates (not going to be in actual game)
 		font.draw(game.batch, String.format("%.0f", player.getX()),
 				player.getX() - 20, player.getY() - 10);
 		font.draw(game.batch, String.format("%.0f", player.getY()),

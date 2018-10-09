@@ -12,7 +12,7 @@ public class Wave extends Game {
 	@Override
 	public void create() {
 		// New spritebatch for images
-		batch = new SpriteBatch();
+		batch = new SpriteBatch(); 
 
 		// Set the screen to the main menu
 		setScreen(new MainMenu(this));

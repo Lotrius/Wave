@@ -23,7 +23,7 @@ public class MainMenu implements Screen {
 	BitmapFont font;
 
 	public MainMenu(Wave game) {
-		// Game
+		// Game 
 		this.game = game;
 		
 		font = new BitmapFont();
@@ -50,6 +50,7 @@ public class MainMenu implements Screen {
 	}
 
 	public void setGameScreen() {
+		// Change game screen to main city if path taken
 		this.dispose();
 		player = new Warrior("SC", "Warrior", 1);
 		game.setScreen(new MainCity(game, player));
@@ -170,8 +171,7 @@ public class MainMenu implements Screen {
 
 		game.batch.draw(mainMenuImage, 0, 0, Wave.V_WIDTH, Wave.V_HEIGHT); // Background
 		
-		font.draw(game.batch, Integer.toString(Gdx.input.getY()), 30, 30);
-
+		// Draw buttons
 		drawPlay();
 		drawOptions();
 		drawExit();

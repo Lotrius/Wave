@@ -44,7 +44,7 @@ public class EasyPortal extends InGameScreen {
 		// If the player tries to take the road to the portal area, dispose of current screen
 		// and load portal area
 		if (Gdx.input.isKeyPressed(Keys.K)) { 
-			this.dispose();
+			this.dispose(); 
 			game.setScreen(new PortalArea1(game, player)); 
 		}
 	}
