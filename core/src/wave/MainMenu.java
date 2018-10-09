@@ -58,7 +58,7 @@ public class MainMenu implements Screen {
 	public void drawPlay() {
 		int playLocation = 2;
 		int playX = Wave.V_WIDTH / middle; 
-		int playOffsetX = buttonWidth / middle;
+		int playOffsetX = buttonWidth / middle; 
 
 		int playY = Wave.V_HEIGHT / middle;
 		int playOffsetY = buttonHeight / playLocation;

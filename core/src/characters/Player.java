@@ -33,7 +33,7 @@ public abstract class Player {
 	public Texture getTexture() {
 		return this.texture;
 	}
-	
+	 
 	public float getX() {
 		return x;
 	} 

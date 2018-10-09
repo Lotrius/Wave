@@ -68,7 +68,7 @@ public class MainCity extends InGameScreen {
 			game.setScreen(new PortalArea1(game, player));
 		}
 	}
-
+ 
 	@Override
 	public void render(float delta) {
 		// Exit if ESC pressed
@@ -98,9 +98,9 @@ public class MainCity extends InGameScreen {
 		game.batch.draw(player.getTexture(), player.getX(), player.getY(),
 				PLAYER_WIDTH, PLAYER_HEIGHT);
 		font.draw(game.batch, String.format("%.0f", player.getX()),
-				player.getX() - 10, player.getY() - 10);
+				player.getX() - 20, player.getY() - 10);
 		font.draw(game.batch, String.format("%.0f", player.getY()),
-				player.getX() + 20, player.getY() - 10);
+				player.getX() + 20, player.getY() - 10); 
 		
 		game.batch.end();
 

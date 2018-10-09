@@ -11,7 +11,7 @@ public class Warrior extends Player{
 	
 	public Warrior (String name, String classType, int level) { 
 		super(name, classType, level, new Texture(Gdx.files.internal("art/player.png"))); 
-	}
+	} 
 	
 	public void dash() {
 		
